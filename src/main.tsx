@@ -4,6 +4,7 @@ import {ChatPortal,ModelSettings,EnterpriseData,ConsultationLogs,AgentGraph} fro
 import Workspace from './workspace';
 import RealRetail from './complete-retail';
 import AgentHome from './agent-home';
+import GrowthWorkbench from './growth-workbench';
 import CaseSwitch from './case-switch';
 import LedgerDatabase from './ledger-database';
 import React,{useEffect,useState} from 'react';
@@ -35,7 +36,7 @@ function Admin(){const [session,setSession]=useState<any>(null),[password,setPas
 }
 class ErrorBoundary extends React.Component<{children:React.ReactNode},{error:boolean}>{state={error:false};static getDerivedStateFromError(){return {error:true}}render(){return this.state.error?<div className="empty-box"><h1>页面暂时无法显示</h1><p>请刷新页面后重试。已提交的数据不会因此删除。</p><button onClick={()=>location.reload()}>刷新</button></div>:this.props.children}}
 const admin=location.pathname.startsWith('/admin');document.title=admin?'智链销 · 管理后台':'智链销 · 门店经营助手';
-createRoot(document.getElementById('root')!).render(<ErrorBoundary>{admin?<Admin/>:location.pathname==='/enterprise-chat'?<ChatPortal/>:location.pathname==='/real-data'?<RealRetail/>:location.pathname==='/workspace'?<CaseSwitch><Workspace/></CaseSwitch>:location.pathname==='/scenario'?<RealRetail initialTab="planning"/>:location.pathname==='/legacy-scenario'?<Customer/>:<AgentHome/>}</ErrorBoundary>);
+createRoot(document.getElementById('root')!).render(<ErrorBoundary>{admin?<Admin/>:location.pathname==='/growth'?<GrowthWorkbench/>:location.pathname==='/enterprise-chat'?<ChatPortal/>:location.pathname==='/real-data'?<RealRetail/>:location.pathname==='/workspace'?<CaseSwitch><Workspace/></CaseSwitch>:location.pathname==='/scenario'?<RealRetail initialTab="planning"/>:location.pathname==='/legacy-scenario'?<Customer/>:<AgentHome/>}</ErrorBoundary>);
 
 
 

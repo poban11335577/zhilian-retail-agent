@@ -28,11 +28,11 @@ npm test
 npm run build
 ```
 
-默认首页经营智能体；/scenario备货，/real-data八类明细和报表，/admin管理。自有企业咨询/enterprise-chat，独立企业账本与历史导入不是公共案例的续写。
+默认首页经营智能体；/growth经营增长与利润目标，/scenario备货，/real-data八类明细和报表，/admin管理。自有企业咨询/enterprise-chat，独立企业账本与历史导入不是公共案例的续写。
 
 Netlify服务器需要ADMIN_PASSWORD_HASH、SESSION_SECRET；本地setup生成私有配置。后台支持Ark Responses，密钥加密保存。不要上传.env、.local-data、.netlify或管理员私有密码文件。
 
-39项测试；主要数据和计算入口为public/data/domestic-*.json、lib/case-book.ts、server/case-workflow.ts、server/case-language.ts、server/case-evidence.ts、server/case-forecast.ts。通用企业ledger是独立系统。当前公共案例按整数克和万分之一元计算，参考成本、采购与损耗明确标（拟）。
+43项测试；主要数据和计算入口为public/data/domestic-*.json、lib/case-book.ts、server/case-workflow.ts、server/case-language.ts、server/case-evidence.ts、server/case-forecast.ts、lib/profit-forecast.ts。通用企业ledger是独立系统。当前公共案例按整数克和万分之一元计算，参考成本、采购与损耗明确标（拟）。
 
 官方数据、日期平移、真实/拟定边界及完整剩余问题见docs。Excel16张表与网站数据同源。源码保留旧英国案例供历史测试，不作为默认国内案例。
 
@@ -47,4 +47,21 @@ python scripts/build-domestic-case.py scripts/data-inputs/domestic
 `npm run build` 会从两份完整账套生成轻量首页概览，再构建页面和后端。首页不下载完整销售明细；经营数据页按需加载原账套。
 
 当前默认采购审核只保存意见，不自动记账。角色配置不意味着9个独立推理模型；模型只能依据只读工具证据提出建议。
+
+## 利润预测 Skill 与增长工作台
+
+`/growth` 展示原始销售日趋势、等长周比较、商品贡献与回落线索，并支持未来7/14/30天的利润目标测算。调整销量、售价、单位成本、损耗费用改善和其他费用，查看利润变化拆解及三种敏感性情景。保存方案仅保存在此浏览器，不写入业务流水。
+
+问答示例：`预测未来30天全店净利润，销量增长20%，损耗费用降低10%，目标净利润10000元。`
+
+可复用技能位于 [skills/profit-forecast/SKILL.md](skills/profit-forecast/SKILL.md)，在项目根目录运行：
+
+```text
+node skills/profit-forecast/scripts/forecast.mjs
+node skills/profit-forecast/scripts/forecast.mjs conditions.json
+```
+
+网页、问答与脚本使用同一计算引擎。`npm run build` 同时生成约23KB的利润基线，无需在增长页面下载完整销售JSON。销售额由原表数量与单价演算；成本、损耗及其他费用（拟），未来结果与目标（拟），不表示已实现增长或原商超真实利润。该版本按经营演示设计。
+
+![利润预测与目标工作台](docs/screenshots/profit-desktop.png)
 

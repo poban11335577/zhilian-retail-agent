@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-case-summary.mjs && vite build && node scripts/build-functions.mjs",
+    "build": "node scripts/build-case-summary.mjs && node scripts/build-profit-baseline.mjs && vite build && node scripts/build-functions.mjs",
     "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
     "test": "node --test server/*.test.ts",
     "deploy": "netlify deploy --prod --dir dist --functions .server-functions --no-build"
