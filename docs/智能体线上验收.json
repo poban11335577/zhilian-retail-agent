@@ -1,0 +1,1910 @@
+{
+  "url": "https://zhilian-business-poban.netlify.app",
+  "at": "2026-09-30T16:12:12.718Z",
+  "model": "doubao-seed-2-1-lite-260915",
+  "publicModelReady": true,
+  "caseId": "国内商超-202609-人民币-v3",
+  "modelActualCallsVerified": true,
+  "anonymousModelActualCallsVerified": true,
+  "tokenBudget": 450000,
+  "usedTokens": 41577,
+  "reservedTokens": 0,
+  "forecastMatchesDatabase": true,
+  "followupChangesParameters": true,
+  "budgetConstraintVerified": true,
+  "adminRecordsMatchPublicReports": true,
+  "profitCashBridgeVerified": true,
+  "originalDatesPreserved": true,
+  "checks": [
+    {
+      "name": "每张凭证借贷平衡（拟）",
+      "difference": 0
+    },
+    {
+      "name": "资产 = 负债 + 权益（拟）",
+      "difference": 0
+    },
+    {
+      "name": "库存明细 = 库存总账（拟）",
+      "difference": 0
+    },
+    {
+      "name": "期初现金 + 收支 = 期末现金（拟）",
+      "difference": 0
+    },
+    {
+      "name": "商品销售净额 = 原始销量售价演算",
+      "difference": 0
+    },
+    {
+      "name": "原单汇总 = 销售明细",
+      "difference": 0
+    }
+  ],
+  "excelMatches": true,
+  "runs": [
+    {
+      "id": "3f5520fa116c35894ad9ee4fe2b39ea8",
+      "question": "小米椒明天备货，需求增长三成，预算500元。",
+      "engineVersion": "国内生鲜-20260930-2",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T16:08:59.971Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "revenue",
+        "ascending": false,
+        "limit": 10,
+        "price": false,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 1,
+        "uplift": 30,
+        "budget_scaled": 5000000,
+        "assumptions": [
+          "天数按本次需求",
+          "需求变化按本次需求",
+          "预算按本次需求",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": null,
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 3701,
+          "output": "用户明确指定小米椒备货，需求增长三成、预算500元，属于备货预测场景，对应候选小米椒商品，仅触发预测意图。",
+          "details": {
+            "intents": [
+              "forecast"
+            ],
+            "productIds": [
+              "102900011031100"
+            ],
+            "clarification": "",
+            "reason": "用户明确指定小米椒备货，需求增长三成、预算500元，属于备货预测场景，对应候选小米椒商品，仅触发预测意图。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 380,
+          "output": "依据1 · 补货决策 · 销量预测与备货测算"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 6231,
+          "output": "行动：当前可售库存无法覆盖明日含增长需求与损耗后的预计销量，存在备货缺口，需先向供应商核实实际次日到货交期，确认交付时间后再按分日到货计划安排采购，不得一次性囤积生鲜库存。\n行动：本次测算基于历史周销量均值，预测存在固有误差，到货后需按实际到货量、效期情况验收，并跟踪实际销量动态调整后续备货，避免过量报损。"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "销量预测与备货测算",
+          "node": "补货决策",
+          "configRevision": 0,
+          "text": "小米椒(份)（102900011031100）：样本30天，正向销量616，日均20.5333；账面库存5.4千克（拟）、用于预测窗口的可售库存0千克（拟）。预测1天，增幅30%（拟），方法星期分组均值，预计销量18.72千克；参考损耗9.43%；安全库存4.107（拟），缺口24.777，包装0.5（拟），建议备货25（拟），预算35.00元（拟）。按分日到货计划采购，不一次囤货。",
+          "data": {
+            "rows": [
+              {
+                "productId": "102900011031100",
+                "name": "小米椒(份)",
+                "supplierId": "供05",
+                "unit": "千克",
+                "asOf": "2026-09-30",
+                "from": "2026-09-01",
+                "to": "2026-09-30",
+                "horizonFrom": "2026-10-01",
+                "horizonTo": "2026-10-01",
+                "days": 1,
+                "uplift": 30,
+                "stock": 5.4,
+                "availableStock": 0,
+                "availabilityRule": "生鲜缺少批次效期与次日验收，按次日可售0千克保守测算（拟）；账面库存单列。",
+                "sold": 616,
+                "returned": 1,
+                "sampleDays": 30,
+                "average": 20.533333333333335,
+                "method": "星期分组均值",
+                "mae": {
+                  "days": 7,
+                  "average": 6.757763975155279,
+                  "weekday": 6.083333333333334
+                },
+                "forecast": 18.72,
+                "required": 20.67,
+                "safety": 4.107,
+                "remaining": -20.67,
+                "gap": 24.777,
+                "suggested": 25,
+                "packSize": 0.5,
+                "bufferPercent": 0,
+                "lossPercent": 9.43,
+                "cost_scaled": 14000,
+                "budget_scaled": 350000,
+                "dailyPlan": [
+                  {
+                    "date": "2026-10-01",
+                    "demand": 18.72,
+                    "lossAdjusted": 20.67,
+                    "safety": 4.107,
+                    "suggested": 25,
+                    "budget_scaled": 350000
+                  }
+                ],
+                "sourceRows": [
+                  650612,
+                  650748,
+                  650772,
+                  650893,
+                  651053,
+                  651169,
+                  651220,
+                  651321
+                ],
+                "sourceRowCount": 617,
+                "invoiceRefs": [
+                  "日销-20220901（拟）",
+                  "日销-20220902（拟）",
+                  "日销-20220903（拟）",
+                  "日销-20220904（拟）",
+                  "日销-20220905（拟）",
+                  "日销-20220906（拟）",
+                  "日销-20220907（拟）",
+                  "日销-20220908（拟）"
+                ],
+                "wholesaleReference_scaled": 13650,
+                "wholesaleSourceRows": [
+                  {
+                    "row": 41322,
+                    "date": "2022-09-01",
+                    "price_scaled": 9400
+                  },
+                  {
+                    "row": 41381,
+                    "date": "2022-09-02",
+                    "price_scaled": 12000
+                  },
+                  {
+                    "row": 41439,
+                    "date": "2022-09-03",
+                    "price_scaled": 11300
+                  },
+                  {
+                    "row": 41499,
+                    "date": "2022-09-04",
+                    "price_scaled": 14900
+                  },
+                  {
+                    "row": 41556,
+                    "date": "2022-09-05",
+                    "price_scaled": 15300
+                  }
+                ],
+                "lossSourceRow": 149,
+                "quantityBasis": "原始正向销量；数量单位千克，退货与拟定损耗参与账面库存结存",
+                "assumptions": [
+                  "天数按本次需求",
+                  "需求变化按本次需求",
+                  "预算按本次需求",
+                  "安全库存、包装及缓冲为明确标注的测算规则（拟）。",
+                  "以查询截止日为演示决策时点；预测明天为该时点次日。星期模型按原始2022年日期学习，按目标2026年日历预测（拟）。",
+                  "近期损耗率来自附件4，非本月逐笔实测；分日到货，不能一次囤积整个活动期间的生鲜。",
+                  "包装0.5千克、安全余量按0.2个日均销量为情景（拟）；没有实际供应商到货承诺。"
+                ],
+                "warning": "留出检验仅衡量历史误差，不保证未来销量。",
+                "unconstrainedSuggested": 25,
+                "budgetLimited": false,
+                "allocationReason": "按期间毛利率优先、缺口次序分配，不构成全局最优证明；须人工核实交期与次日可售库存。",
+                "unfulfilled": 0
+              }
+            ],
+            "allocation": {
+              "totalRequested_scaled": 350000,
+              "totalAllocated_scaled": 350000,
+              "budget_scaled": 5000000,
+              "remainingBudget_scaled": 4650000,
+              "limitedCount": 0,
+              "totalProducts": 1,
+              "rule": "以包装为单位，先满足期间毛利率较高的商品，余额不足时减少或不采购；预算约束由程序校验。"
+            },
+            "totalCandidates": 1,
+            "totalShortages": 1,
+            "cash_scaled": 731992629,
+            "assumptions": [
+              "天数按本次需求",
+              "需求变化按本次需求",
+              "预算按本次需求",
+              "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+            ]
+          }
+        }
+      ],
+      "forecasts": [
+        {
+          "productId": "102900011031100",
+          "name": "小米椒(份)",
+          "supplierId": "供05",
+          "unit": "千克",
+          "asOf": "2026-09-30",
+          "from": "2026-09-01",
+          "to": "2026-09-30",
+          "horizonFrom": "2026-10-01",
+          "horizonTo": "2026-10-01",
+          "days": 1,
+          "uplift": 30,
+          "stock": 5.4,
+          "availableStock": 0,
+          "availabilityRule": "生鲜缺少批次效期与次日验收，按次日可售0千克保守测算（拟）；账面库存单列。",
+          "sold": 616,
+          "returned": 1,
+          "sampleDays": 30,
+          "average": 20.533333333333335,
+          "method": "星期分组均值",
+          "mae": {
+            "days": 7,
+            "average": 6.757763975155279,
+            "weekday": 6.083333333333334
+          },
+          "forecast": 18.72,
+          "required": 20.67,
+          "safety": 4.107,
+          "remaining": -20.67,
+          "gap": 24.777,
+          "suggested": 25,
+          "packSize": 0.5,
+          "bufferPercent": 0,
+          "lossPercent": 9.43,
+          "cost_scaled": 14000,
+          "budget_scaled": 350000,
+          "dailyPlan": [
+            {
+              "date": "2026-10-01",
+              "demand": 18.72,
+              "lossAdjusted": 20.67,
+              "safety": 4.107,
+              "suggested": 25,
+              "budget_scaled": 350000
+            }
+          ],
+          "sourceRows": [
+            650612,
+            650748,
+            650772,
+            650893,
+            651053,
+            651169,
+            651220,
+            651321
+          ],
+          "sourceRowCount": 617,
+          "invoiceRefs": [
+            "日销-20220901（拟）",
+            "日销-20220902（拟）",
+            "日销-20220903（拟）",
+            "日销-20220904（拟）",
+            "日销-20220905（拟）",
+            "日销-20220906（拟）",
+            "日销-20220907（拟）",
+            "日销-20220908（拟）"
+          ],
+          "wholesaleReference_scaled": 13650,
+          "wholesaleSourceRows": [
+            {
+              "row": 41322,
+              "date": "2022-09-01",
+              "price_scaled": 9400
+            },
+            {
+              "row": 41381,
+              "date": "2022-09-02",
+              "price_scaled": 12000
+            },
+            {
+              "row": 41439,
+              "date": "2022-09-03",
+              "price_scaled": 11300
+            },
+            {
+              "row": 41499,
+              "date": "2022-09-04",
+              "price_scaled": 14900
+            },
+            {
+              "row": 41556,
+              "date": "2022-09-05",
+              "price_scaled": 15300
+            }
+          ],
+          "lossSourceRow": 149,
+          "quantityBasis": "原始正向销量；数量单位千克，退货与拟定损耗参与账面库存结存",
+          "assumptions": [
+            "天数按本次需求",
+            "需求变化按本次需求",
+            "预算按本次需求",
+            "安全库存、包装及缓冲为明确标注的测算规则（拟）。",
+            "以查询截止日为演示决策时点；预测明天为该时点次日。星期模型按原始2022年日期学习，按目标2026年日历预测（拟）。",
+            "近期损耗率来自附件4，非本月逐笔实测；分日到货，不能一次囤积整个活动期间的生鲜。",
+            "包装0.5千克、安全余量按0.2个日均销量为情景（拟）；没有实际供应商到货承诺。"
+          ],
+          "warning": "留出检验仅衡量历史误差，不保证未来销量。",
+          "unconstrainedSuggested": 25,
+          "budgetLimited": false,
+          "allocationReason": "按期间毛利率优先、缺口次序分配，不构成全局最优证明；须人工核实交期与次日可售库存。",
+          "unfulfilled": 0
+        }
+      ],
+      "approval": "pending",
+      "usage": [
+        {
+          "input_tokens": 618,
+          "output_tokens": 72,
+          "total_tokens": 690,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 2066,
+          "output_tokens": 192,
+          "total_tokens": 2258,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "forecast"
+        ],
+        "productIds": [
+          "102900011031100"
+        ],
+        "clarification": "",
+        "reason": "用户明确指定小米椒备货，需求增长三成、预算500元，属于备货预测场景，对应候选小米椒商品，仅触发预测意图。"
+      },
+      "allocation": {
+        "rows": [
+          {
+            "productId": "102900011031100",
+            "name": "小米椒(份)",
+            "supplierId": "供05",
+            "unit": "千克",
+            "asOf": "2026-09-30",
+            "from": "2026-09-01",
+            "to": "2026-09-30",
+            "horizonFrom": "2026-10-01",
+            "horizonTo": "2026-10-01",
+            "days": 1,
+            "uplift": 30,
+            "stock": 5.4,
+            "availableStock": 0,
+            "availabilityRule": "生鲜缺少批次效期与次日验收，按次日可售0千克保守测算（拟）；账面库存单列。",
+            "sold": 616,
+            "returned": 1,
+            "sampleDays": 30,
+            "average": 20.533333333333335,
+            "method": "星期分组均值",
+            "mae": {
+              "days": 7,
+              "average": 6.757763975155279,
+              "weekday": 6.083333333333334
+            },
+            "forecast": 18.72,
+            "required": 20.67,
+            "safety": 4.107,
+            "remaining": -20.67,
+            "gap": 24.777,
+            "suggested": 25,
+            "packSize": 0.5,
+            "bufferPercent": 0,
+            "lossPercent": 9.43,
+            "cost_scaled": 14000,
+            "budget_scaled": 350000,
+            "dailyPlan": [
+              {
+                "date": "2026-10-01",
+                "demand": 18.72,
+                "lossAdjusted": 20.67,
+                "safety": 4.107,
+                "suggested": 25,
+                "budget_scaled": 350000
+              }
+            ],
+            "sourceRows": [
+              650612,
+              650748,
+              650772,
+              650893,
+              651053,
+              651169,
+              651220,
+              651321
+            ],
+            "sourceRowCount": 617,
+            "invoiceRefs": [
+              "日销-20220901（拟）",
+              "日销-20220902（拟）",
+              "日销-20220903（拟）",
+              "日销-20220904（拟）",
+              "日销-20220905（拟）",
+              "日销-20220906（拟）",
+              "日销-20220907（拟）",
+              "日销-20220908（拟）"
+            ],
+            "wholesaleReference_scaled": 13650,
+            "wholesaleSourceRows": [
+              {
+                "row": 41322,
+                "date": "2022-09-01",
+                "price_scaled": 9400
+              },
+              {
+                "row": 41381,
+                "date": "2022-09-02",
+                "price_scaled": 12000
+              },
+              {
+                "row": 41439,
+                "date": "2022-09-03",
+                "price_scaled": 11300
+              },
+              {
+                "row": 41499,
+                "date": "2022-09-04",
+                "price_scaled": 14900
+              },
+              {
+                "row": 41556,
+                "date": "2022-09-05",
+                "price_scaled": 15300
+              }
+            ],
+            "lossSourceRow": 149,
+            "quantityBasis": "原始正向销量；数量单位千克，退货与拟定损耗参与账面库存结存",
+            "assumptions": [
+              "天数按本次需求",
+              "需求变化按本次需求",
+              "预算按本次需求",
+              "安全库存、包装及缓冲为明确标注的测算规则（拟）。",
+              "以查询截止日为演示决策时点；预测明天为该时点次日。星期模型按原始2022年日期学习，按目标2026年日历预测（拟）。",
+              "近期损耗率来自附件4，非本月逐笔实测；分日到货，不能一次囤积整个活动期间的生鲜。",
+              "包装0.5千克、安全余量按0.2个日均销量为情景（拟）；没有实际供应商到货承诺。"
+            ],
+            "warning": "留出检验仅衡量历史误差，不保证未来销量。",
+            "unconstrainedSuggested": 25,
+            "budgetLimited": false,
+            "allocationReason": "按期间毛利率优先、缺口次序分配，不构成全局最优证明；须人工核实交期与次日可售库存。",
+            "unfulfilled": 0
+          }
+        ],
+        "totalRequested_scaled": 350000,
+        "totalAllocated_scaled": 350000,
+        "budget_scaled": 5000000,
+        "remainingBudget_scaled": 4650000,
+        "limitedCount": 0,
+        "totalProducts": 1,
+        "rule": "以包装为单位，先满足期间毛利率较高的商品，余额不足时减少或不采购；预算约束由程序校验。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [
+        {
+          "ref": "依据1",
+          "text": "小米椒(份)：可售库存不足以覆盖预测需求及损耗余量，测算缺口24.777，需核实交期后安排备货（拟）。"
+        }
+      ],
+      "modelWarnings": [
+        "部分模型表述未通过输出结构、数字或引用检查，已移除。"
+      ],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "当前可售库存无法覆盖明日含增长需求与损耗后的预计销量，存在备货缺口，需先向供应商核实实际次日到货交期，确认交付时间后再按分日到货计划安排采购，不得一次性囤积生鲜库存。",
+          "refs": [
+            "依据1"
+          ]
+        },
+        {
+          "kind": "行动",
+          "text": "本次测算基于历史周销量均值，预测存在固有误差，到货后需按实际到货量、效期情况验收，并跟踪实际销量动态调整后续备货，避免过量报损。",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-01至2026-09-30（拟），人民币；原始销售2022-09，演示业务（拟），来源与假设分别标注。\n\n经营诊断：\n小米椒(份)：可售库存不足以覆盖预测需求及损耗余量，测算缺口24.777，需核实交期后安排备货（拟）。 [依据1]\n\n【依据1 · 销量预测与备货测算】\n小米椒(份)（102900011031100）：样本30天，正向销量616，日均20.5333；账面库存5.4千克（拟）、用于预测窗口的可售库存0千克（拟）。预测1天，增幅30%（拟），方法星期分组均值，预计销量18.72千克；参考损耗9.43%；安全库存4.107（拟），缺口24.777，包装0.5（拟），建议备货25（拟），预算35.00元（拟）。按分日到货计划采购，不一次囤货。\n\n经营建议：\n行动：当前可售库存无法覆盖明日含增长需求与损耗后的预计销量，存在备货缺口，需先向供应商核实实际次日到货交期，确认交付时间后再按分日到货计划安排采购，不得一次性囤积生鲜库存。 [依据1]\n行动：本次测算基于历史周销量均值，预测存在固有误差，到货后需按实际到货量、效期情况验收，并跟踪实际销量动态调整后续备货，避免过量报损。 [依据1]\n\n测算为未来情景（拟），账面库存与预测窗口可售库存分别列示，尚未采购入库。供应商交期和真实资金需人工核实。",
+      "finishedAt": "2026-09-30T16:09:14.750Z"
+    },
+    {
+      "id": "a59241dc48b9ba2db4f9d70bb1089bb5",
+      "question": "那只做3天，下降20%，预算100元呢？",
+      "engineVersion": "国内生鲜-20260930-2",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T16:09:15.774Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "revenue",
+        "ascending": false,
+        "limit": 10,
+        "price": false,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 3,
+        "uplift": -20,
+        "budget_scaled": 1000000,
+        "assumptions": [
+          "天数按本次需求",
+          "需求变化按本次需求",
+          "预算按本次需求",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": {
+        "question": "小米椒明天备货，需求增长三成，预算500元。",
+        "plan": {
+          "intents": [
+            "forecast",
+            "product"
+          ],
+          "productIds": [
+            "102900011031100"
+          ],
+          "clarification": "",
+          "reason": "用户明确指定小米椒备货，需求增长三成、预算500元，属于备货预测场景，对应候选小米椒商品，仅触发预测意图。"
+        },
+        "parameters": {
+          "days": 1,
+          "uplift": 30,
+          "budget_scaled": 5000000,
+          "assumptions": [
+            "天数按本次需求",
+            "需求变化按本次需求",
+            "预算按本次需求",
+            "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+          ]
+        }
+      },
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 2712,
+          "output": "用户跟进上一轮指定的小米椒备货场景，仅将备货周期调整为3天、需求变动调整为下降20%、预算调整为100元，商品明确为上一轮已匹配的小米椒，无需调用产品查询，仅触发备货预测意图即可。",
+          "details": {
+            "intents": [
+              "forecast"
+            ],
+            "productIds": [
+              "102900011031100"
+            ],
+            "clarification": "",
+            "reason": "用户跟进上一轮指定的小米椒备货场景，仅将备货周期调整为3天、需求变动调整为下降20%、预算调整为100元，商品明确为上一轮已匹配的小米椒，无需调用产品查询，仅触发备货预测意图即可。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 103,
+          "output": "依据1 · 补货决策 · 销量预测与备货测算"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 3648,
+          "output": "行动：可售库存不足以覆盖预测需求、损耗与安全余量，先核实采购交期再安排备货\n行动：按分日到货计划采购，不一次囤积活动期间的生鲜\n行动：补货计划为拟定测算，未获人工确认前不实际下单，也不假设供应商到货承诺"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "销量预测与备货测算",
+          "node": "补货决策",
+          "configRevision": 0,
+          "text": "小米椒(份)（102900011031100）：样本30天，正向销量616，日均20.5333；账面库存5.4千克（拟）、用于预测窗口的可售库存0千克（拟）。预测3天，增幅-20%（拟），方法星期分组均值，预计销量50.44千克；参考损耗9.43%；安全库存4.107（拟），缺口59.799，包装0.5（拟），建议备货69（拟），预算96.60元（拟）。按分日到货计划采购，不一次囤货。",
+          "data": {
+            "rows": [
+              {
+                "productId": "102900011031100",
+                "name": "小米椒(份)",
+                "supplierId": "供05",
+                "unit": "千克",
+                "asOf": "2026-09-30",
+                "from": "2026-09-01",
+                "to": "2026-09-30",
+                "horizonFrom": "2026-10-01",
+                "horizonTo": "2026-10-03",
+                "days": 3,
+                "uplift": -20,
+                "stock": 5.4,
+                "availableStock": 0,
+                "availabilityRule": "生鲜缺少批次效期与次日验收，按次日可售0千克保守测算（拟）；账面库存单列。",
+                "sold": 616,
+                "returned": 1,
+                "sampleDays": 30,
+                "average": 20.533333333333335,
+                "method": "星期分组均值",
+                "mae": {
+                  "days": 7,
+                  "average": 6.757763975155279,
+                  "weekday": 6.083333333333334
+                },
+                "forecast": 50.44,
+                "required": 55.692,
+                "safety": 4.107,
+                "remaining": -55.692,
+                "gap": 59.799,
+                "suggested": 69,
+                "packSize": 0.5,
+                "bufferPercent": 0,
+                "lossPercent": 9.43,
+                "cost_scaled": 14000,
+                "budget_scaled": 966000,
+                "dailyPlan": [
+                  {
+                    "date": "2026-10-01",
+                    "demand": 11.52,
+                    "lossAdjusted": 12.72,
+                    "safety": 4.107,
+                    "suggested": 17,
+                    "budget_scaled": 238000
+                  },
+                  {
+                    "date": "2026-10-02",
+                    "demand": 16.32,
+                    "lossAdjusted": 18.02,
+                    "safety": 4.107,
+                    "suggested": 22.5,
+                    "budget_scaled": 315000
+                  },
+                  {
+                    "date": "2026-10-03",
+                    "demand": 22.6,
+                    "lossAdjusted": 24.954,
+                    "safety": 4.107,
+                    "suggested": 29.5,
+                    "budget_scaled": 413000
+                  }
+                ],
+                "sourceRows": [
+                  650612,
+                  650748,
+                  650772,
+                  650893,
+                  651053,
+                  651169,
+                  651220,
+                  651321
+                ],
+                "sourceRowCount": 617,
+                "invoiceRefs": [
+                  "日销-20220901（拟）",
+                  "日销-20220902（拟）",
+                  "日销-20220903（拟）",
+                  "日销-20220904（拟）",
+                  "日销-20220905（拟）",
+                  "日销-20220906（拟）",
+                  "日销-20220907（拟）",
+                  "日销-20220908（拟）"
+                ],
+                "wholesaleReference_scaled": 13650,
+                "wholesaleSourceRows": [
+                  {
+                    "row": 41322,
+                    "date": "2022-09-01",
+                    "price_scaled": 9400
+                  },
+                  {
+                    "row": 41381,
+                    "date": "2022-09-02",
+                    "price_scaled": 12000
+                  },
+                  {
+                    "row": 41439,
+                    "date": "2022-09-03",
+                    "price_scaled": 11300
+                  },
+                  {
+                    "row": 41499,
+                    "date": "2022-09-04",
+                    "price_scaled": 14900
+                  },
+                  {
+                    "row": 41556,
+                    "date": "2022-09-05",
+                    "price_scaled": 15300
+                  }
+                ],
+                "lossSourceRow": 149,
+                "quantityBasis": "原始正向销量；数量单位千克，退货与拟定损耗参与账面库存结存",
+                "assumptions": [
+                  "天数按本次需求",
+                  "需求变化按本次需求",
+                  "预算按本次需求",
+                  "安全库存、包装及缓冲为明确标注的测算规则（拟）。",
+                  "以查询截止日为演示决策时点；预测明天为该时点次日。星期模型按原始2022年日期学习，按目标2026年日历预测（拟）。",
+                  "近期损耗率来自附件4，非本月逐笔实测；分日到货，不能一次囤积整个活动期间的生鲜。",
+                  "包装0.5千克、安全余量按0.2个日均销量为情景（拟）；没有实际供应商到货承诺。"
+                ],
+                "warning": "留出检验仅衡量历史误差，不保证未来销量。",
+                "unconstrainedSuggested": 69,
+                "budgetLimited": false,
+                "allocationReason": "按期间毛利率优先、缺口次序分配，不构成全局最优证明；须人工核实交期与次日可售库存。",
+                "unfulfilled": 0
+              }
+            ],
+            "allocation": {
+              "totalRequested_scaled": 966000,
+              "totalAllocated_scaled": 966000,
+              "budget_scaled": 1000000,
+              "remainingBudget_scaled": 34000,
+              "limitedCount": 0,
+              "totalProducts": 1,
+              "rule": "以包装为单位，先满足期间毛利率较高的商品，余额不足时减少或不采购；预算约束由程序校验。"
+            },
+            "totalCandidates": 1,
+            "totalShortages": 1,
+            "cash_scaled": 731992629,
+            "assumptions": [
+              "天数按本次需求",
+              "需求变化按本次需求",
+              "预算按本次需求",
+              "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+            ]
+          }
+        }
+      ],
+      "forecasts": [
+        {
+          "productId": "102900011031100",
+          "name": "小米椒(份)",
+          "supplierId": "供05",
+          "unit": "千克",
+          "asOf": "2026-09-30",
+          "from": "2026-09-01",
+          "to": "2026-09-30",
+          "horizonFrom": "2026-10-01",
+          "horizonTo": "2026-10-03",
+          "days": 3,
+          "uplift": -20,
+          "stock": 5.4,
+          "availableStock": 0,
+          "availabilityRule": "生鲜缺少批次效期与次日验收，按次日可售0千克保守测算（拟）；账面库存单列。",
+          "sold": 616,
+          "returned": 1,
+          "sampleDays": 30,
+          "average": 20.533333333333335,
+          "method": "星期分组均值",
+          "mae": {
+            "days": 7,
+            "average": 6.757763975155279,
+            "weekday": 6.083333333333334
+          },
+          "forecast": 50.44,
+          "required": 55.692,
+          "safety": 4.107,
+          "remaining": -55.692,
+          "gap": 59.799,
+          "suggested": 69,
+          "packSize": 0.5,
+          "bufferPercent": 0,
+          "lossPercent": 9.43,
+          "cost_scaled": 14000,
+          "budget_scaled": 966000,
+          "dailyPlan": [
+            {
+              "date": "2026-10-01",
+              "demand": 11.52,
+              "lossAdjusted": 12.72,
+              "safety": 4.107,
+              "suggested": 17,
+              "budget_scaled": 238000
+            },
+            {
+              "date": "2026-10-02",
+              "demand": 16.32,
+              "lossAdjusted": 18.02,
+              "safety": 4.107,
+              "suggested": 22.5,
+              "budget_scaled": 315000
+            },
+            {
+              "date": "2026-10-03",
+              "demand": 22.6,
+              "lossAdjusted": 24.954,
+              "safety": 4.107,
+              "suggested": 29.5,
+              "budget_scaled": 413000
+            }
+          ],
+          "sourceRows": [
+            650612,
+            650748,
+            650772,
+            650893,
+            651053,
+            651169,
+            651220,
+            651321
+          ],
+          "sourceRowCount": 617,
+          "invoiceRefs": [
+            "日销-20220901（拟）",
+            "日销-20220902（拟）",
+            "日销-20220903（拟）",
+            "日销-20220904（拟）",
+            "日销-20220905（拟）",
+            "日销-20220906（拟）",
+            "日销-20220907（拟）",
+            "日销-20220908（拟）"
+          ],
+          "wholesaleReference_scaled": 13650,
+          "wholesaleSourceRows": [
+            {
+              "row": 41322,
+              "date": "2022-09-01",
+              "price_scaled": 9400
+            },
+            {
+              "row": 41381,
+              "date": "2022-09-02",
+              "price_scaled": 12000
+            },
+            {
+              "row": 41439,
+              "date": "2022-09-03",
+              "price_scaled": 11300
+            },
+            {
+              "row": 41499,
+              "date": "2022-09-04",
+              "price_scaled": 14900
+            },
+            {
+              "row": 41556,
+              "date": "2022-09-05",
+              "price_scaled": 15300
+            }
+          ],
+          "lossSourceRow": 149,
+          "quantityBasis": "原始正向销量；数量单位千克，退货与拟定损耗参与账面库存结存",
+          "assumptions": [
+            "天数按本次需求",
+            "需求变化按本次需求",
+            "预算按本次需求",
+            "安全库存、包装及缓冲为明确标注的测算规则（拟）。",
+            "以查询截止日为演示决策时点；预测明天为该时点次日。星期模型按原始2022年日期学习，按目标2026年日历预测（拟）。",
+            "近期损耗率来自附件4，非本月逐笔实测；分日到货，不能一次囤积整个活动期间的生鲜。",
+            "包装0.5千克、安全余量按0.2个日均销量为情景（拟）；没有实际供应商到货承诺。"
+          ],
+          "warning": "留出检验仅衡量历史误差，不保证未来销量。",
+          "unconstrainedSuggested": 69,
+          "budgetLimited": false,
+          "allocationReason": "按期间毛利率优先、缺口次序分配，不构成全局最优证明；须人工核实交期与次日可售库存。",
+          "unfulfilled": 0
+        }
+      ],
+      "approval": "pending",
+      "usage": [
+        {
+          "input_tokens": 774,
+          "output_tokens": 99,
+          "total_tokens": 873,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 2188,
+          "output_tokens": 100,
+          "total_tokens": 2288,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "forecast"
+        ],
+        "productIds": [
+          "102900011031100"
+        ],
+        "clarification": "",
+        "reason": "用户跟进上一轮指定的小米椒备货场景，仅将备货周期调整为3天、需求变动调整为下降20%、预算调整为100元，商品明确为上一轮已匹配的小米椒，无需调用产品查询，仅触发备货预测意图即可。"
+      },
+      "allocation": {
+        "rows": [
+          {
+            "productId": "102900011031100",
+            "name": "小米椒(份)",
+            "supplierId": "供05",
+            "unit": "千克",
+            "asOf": "2026-09-30",
+            "from": "2026-09-01",
+            "to": "2026-09-30",
+            "horizonFrom": "2026-10-01",
+            "horizonTo": "2026-10-03",
+            "days": 3,
+            "uplift": -20,
+            "stock": 5.4,
+            "availableStock": 0,
+            "availabilityRule": "生鲜缺少批次效期与次日验收，按次日可售0千克保守测算（拟）；账面库存单列。",
+            "sold": 616,
+            "returned": 1,
+            "sampleDays": 30,
+            "average": 20.533333333333335,
+            "method": "星期分组均值",
+            "mae": {
+              "days": 7,
+              "average": 6.757763975155279,
+              "weekday": 6.083333333333334
+            },
+            "forecast": 50.44,
+            "required": 55.692,
+            "safety": 4.107,
+            "remaining": -55.692,
+            "gap": 59.799,
+            "suggested": 69,
+            "packSize": 0.5,
+            "bufferPercent": 0,
+            "lossPercent": 9.43,
+            "cost_scaled": 14000,
+            "budget_scaled": 966000,
+            "dailyPlan": [
+              {
+                "date": "2026-10-01",
+                "demand": 11.52,
+                "lossAdjusted": 12.72,
+                "safety": 4.107,
+                "suggested": 17,
+                "budget_scaled": 238000
+              },
+              {
+                "date": "2026-10-02",
+                "demand": 16.32,
+                "lossAdjusted": 18.02,
+                "safety": 4.107,
+                "suggested": 22.5,
+                "budget_scaled": 315000
+              },
+              {
+                "date": "2026-10-03",
+                "demand": 22.6,
+                "lossAdjusted": 24.954,
+                "safety": 4.107,
+                "suggested": 29.5,
+                "budget_scaled": 413000
+              }
+            ],
+            "sourceRows": [
+              650612,
+              650748,
+              650772,
+              650893,
+              651053,
+              651169,
+              651220,
+              651321
+            ],
+            "sourceRowCount": 617,
+            "invoiceRefs": [
+              "日销-20220901（拟）",
+              "日销-20220902（拟）",
+              "日销-20220903（拟）",
+              "日销-20220904（拟）",
+              "日销-20220905（拟）",
+              "日销-20220906（拟）",
+              "日销-20220907（拟）",
+              "日销-20220908（拟）"
+            ],
+            "wholesaleReference_scaled": 13650,
+            "wholesaleSourceRows": [
+              {
+                "row": 41322,
+                "date": "2022-09-01",
+                "price_scaled": 9400
+              },
+              {
+                "row": 41381,
+                "date": "2022-09-02",
+                "price_scaled": 12000
+              },
+              {
+                "row": 41439,
+                "date": "2022-09-03",
+                "price_scaled": 11300
+              },
+              {
+                "row": 41499,
+                "date": "2022-09-04",
+                "price_scaled": 14900
+              },
+              {
+                "row": 41556,
+                "date": "2022-09-05",
+                "price_scaled": 15300
+              }
+            ],
+            "lossSourceRow": 149,
+            "quantityBasis": "原始正向销量；数量单位千克，退货与拟定损耗参与账面库存结存",
+            "assumptions": [
+              "天数按本次需求",
+              "需求变化按本次需求",
+              "预算按本次需求",
+              "安全库存、包装及缓冲为明确标注的测算规则（拟）。",
+              "以查询截止日为演示决策时点；预测明天为该时点次日。星期模型按原始2022年日期学习，按目标2026年日历预测（拟）。",
+              "近期损耗率来自附件4，非本月逐笔实测；分日到货，不能一次囤积整个活动期间的生鲜。",
+              "包装0.5千克、安全余量按0.2个日均销量为情景（拟）；没有实际供应商到货承诺。"
+            ],
+            "warning": "留出检验仅衡量历史误差，不保证未来销量。",
+            "unconstrainedSuggested": 69,
+            "budgetLimited": false,
+            "allocationReason": "按期间毛利率优先、缺口次序分配，不构成全局最优证明；须人工核实交期与次日可售库存。",
+            "unfulfilled": 0
+          }
+        ],
+        "totalRequested_scaled": 966000,
+        "totalAllocated_scaled": 966000,
+        "budget_scaled": 1000000,
+        "remainingBudget_scaled": 34000,
+        "limitedCount": 0,
+        "totalProducts": 1,
+        "rule": "以包装为单位，先满足期间毛利率较高的商品，余额不足时减少或不采购；预算约束由程序校验。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [
+        {
+          "ref": "依据1",
+          "text": "小米椒(份)：可售库存不足以覆盖预测需求及损耗余量，测算缺口59.799，需核实交期后安排备货（拟）。"
+        }
+      ],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "可售库存不足以覆盖预测需求、损耗与安全余量，先核实采购交期再安排备货",
+          "refs": [
+            "依据1"
+          ]
+        },
+        {
+          "kind": "行动",
+          "text": "按分日到货计划采购，不一次囤积活动期间的生鲜",
+          "refs": [
+            "依据1"
+          ]
+        },
+        {
+          "kind": "行动",
+          "text": "补货计划为拟定测算，未获人工确认前不实际下单，也不假设供应商到货承诺",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-01至2026-09-30（拟），人民币；原始销售2022-09，演示业务（拟），来源与假设分别标注。\n\n经营诊断：\n小米椒(份)：可售库存不足以覆盖预测需求及损耗余量，测算缺口59.799，需核实交期后安排备货（拟）。 [依据1]\n\n【依据1 · 销量预测与备货测算】\n小米椒(份)（102900011031100）：样本30天，正向销量616，日均20.5333；账面库存5.4千克（拟）、用于预测窗口的可售库存0千克（拟）。预测3天，增幅-20%（拟），方法星期分组均值，预计销量50.44千克；参考损耗9.43%；安全库存4.107（拟），缺口59.799，包装0.5（拟），建议备货69（拟），预算96.60元（拟）。按分日到货计划采购，不一次囤货。\n\n经营建议：\n行动：可售库存不足以覆盖预测需求、损耗与安全余量，先核实采购交期再安排备货 [依据1]\n行动：按分日到货计划采购，不一次囤积活动期间的生鲜 [依据1]\n行动：补货计划为拟定测算，未获人工确认前不实际下单，也不假设供应商到货承诺 [依据1]\n\n测算为未来情景（拟），账面库存与预测窗口可售库存分别列示，尚未采购入库。供应商交期和真实资金需人工核实。",
+      "finishedAt": "2026-09-30T16:09:24.626Z"
+    },
+    {
+      "id": "8511958108479f68b039f11bc7feb960",
+      "question": "9月5日至9月15日利润和现金为什么不同？",
+      "engineVersion": "国内生鲜-20260930-2",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T16:09:26.435Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "gross",
+        "ascending": false,
+        "limit": 10,
+        "price": false,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-05",
+        "to": "2026-09-15",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 7,
+        "uplift": 0,
+        "budget_scaled": null,
+        "assumptions": [
+          "未指定天数，按7天情景（拟）",
+          "未指定需求变化，按0%情景（拟）",
+          "未设采购预算上限",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": {
+        "question": "那只做3天，下降20%，预算100元呢？",
+        "plan": {
+          "intents": [
+            "forecast"
+          ],
+          "productIds": [
+            "102900011031100"
+          ],
+          "clarification": "",
+          "reason": "用户跟进上一轮指定的小米椒备货场景，仅将备货周期调整为3天、需求变动调整为下降20%、预算调整为100元，商品明确为上一轮已匹配的小米椒，无需调用产品查询，仅触发备货预测意图即可。"
+        },
+        "parameters": {
+          "days": 3,
+          "uplift": -20,
+          "budget_scaled": 1000000,
+          "assumptions": [
+            "天数按本次需求",
+            "需求变化按本次需求",
+            "预算按本次需求",
+            "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+          ]
+        }
+      },
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 4205,
+          "output": "用户查询指定时间段的利润与现金差异原因，属于财务类查询，需调度财务节点对该账期内的利润、现金收支及二者勾稽关系进行核对。",
+          "details": {
+            "intents": [
+              "finance"
+            ],
+            "productIds": [],
+            "clarification": "",
+            "reason": "用户查询指定时间段的利润与现金差异原因，属于财务类查询，需调度财务节点对该账期内的利润、现金收支及二者勾稽关系进行核对。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 422,
+          "output": "依据1 · 回顾与输出 · 财务报表与对账"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 5714,
+          "output": "行动：核对期末应付账款对应的收付款安排，明确利润与现金差异的到期支付影响。\n行动：结合库存增减变动，核实现物盘点与账面库存的一致性，保障利润核算基础准确。\n行动：确认期初现金及初始投入的实际到账情况，厘清期初现金与本期净利润的构成关系。\n行动：明确损耗费用的具体构成及对应付款情况，梳理费用对利润与现金差异的影响。"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "财务报表与对账",
+          "node": "回顾与输出",
+          "configRevision": 0,
+          "text": "当前账套：原始销售 + 补齐记录（拟），2026-09-05至2026-09-15，币种人民币，数量单位千克；官方原始日期2022年9月，演示日期2026年9月（拟）。\n销售净额46,356.3736元；减销售成本26,865.7266元（拟），毛利19,490.647元（拟）；再减经营费用9,800.5182元（拟，含损耗费用8,600.5182元），净利润9,690.1288元（拟）。\n期末现金72,742.7038元（拟）、应收0.00元（拟）、库存283.0977元（拟）、应付10,193.2071元（拟）。现金包含拟定初始投入，采购付款与利润中的销售成本口径不同，因此现金余额不等于净利润。\n6/6项对账通过。可在财务报表和会计凭证逐笔回查。\n利润到现金调节（拟）：期初现金55,547.7778元 + 本期净利润9,690.1288元 + 本期资本投入0.00元 + 应付增加6,990.3645元 − 应收增加0.00元 − 库存增加-514.4327元 = 期末现金72,742.7038元。资本投入是现金来源；判断资金是否可用应核实实际收付款和到期债务。",
+          "data": {
+            "income": {
+              "revenue_scaled": 463563736,
+              "cost_scaled": 268657266,
+              "gross_profit_scaled": 194906470,
+              "expense_scaled": 98005182,
+              "loss_scaled": 86005182,
+              "net_profit_scaled": 96901288
+            },
+            "balance": {
+              "cash": 727427038,
+              "receivable": 0,
+              "inventory": 2830977,
+              "assets": 730258015,
+              "payable": 101932071,
+              "capital": 500000000,
+              "retained": 128325944,
+              "equity": 628325944
+            },
+            "cashflow": {
+              "opening": 555477778,
+              "change": 171949260,
+              "closing": 727427038
+            },
+            "bridge": {
+              "profit": 96901288,
+              "capital": 0,
+              "payable": 69903645,
+              "receivable": 0,
+              "inventory": -5144327,
+              "openingCash": 555477778,
+              "closingCash": 727427038
+            },
+            "checks": [
+              {
+                "name": "每张凭证借贷平衡（拟）",
+                "difference": 0
+              },
+              {
+                "name": "资产 = 负债 + 权益（拟）",
+                "difference": 0
+              },
+              {
+                "name": "库存明细 = 库存总账（拟）",
+                "difference": 0
+              },
+              {
+                "name": "期初现金 + 收支 = 期末现金（拟）",
+                "difference": 0
+              },
+              {
+                "name": "商品销售净额 = 原始销量售价演算",
+                "difference": 0
+              },
+              {
+                "name": "原单汇总 = 销售明细",
+                "difference": 0
+              }
+            ]
+          }
+        }
+      ],
+      "forecasts": [],
+      "approval": "unneeded",
+      "usage": [
+        {
+          "input_tokens": 739,
+          "output_tokens": 60,
+          "total_tokens": 799,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 1418,
+          "output_tokens": 164,
+          "total_tokens": 1582,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "finance"
+        ],
+        "productIds": [],
+        "clarification": "",
+        "reason": "用户查询指定时间段的利润与现金差异原因，属于财务类查询，需调度财务节点对该账期内的利润、现金收支及二者勾稽关系进行核对。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [
+        {
+          "ref": "依据1",
+          "text": "本期按拟定成本费用核算为盈利（拟）；利润与现金差异已由收付款、资本及往来库存调节。"
+        }
+      ],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "核对期末应付账款对应的收付款安排，明确利润与现金差异的到期支付影响。",
+          "refs": [
+            "依据1"
+          ]
+        },
+        {
+          "kind": "行动",
+          "text": "结合库存增减变动，核实现物盘点与账面库存的一致性，保障利润核算基础准确。",
+          "refs": [
+            "依据1"
+          ]
+        },
+        {
+          "kind": "行动",
+          "text": "确认期初现金及初始投入的实际到账情况，厘清期初现金与本期净利润的构成关系。",
+          "refs": [
+            "依据1"
+          ]
+        },
+        {
+          "kind": "行动",
+          "text": "明确损耗费用的具体构成及对应付款情况，梳理费用对利润与现金差异的影响。",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-05至2026-09-15（拟），人民币；原始销售2022-09，演示业务（拟），来源与假设分别标注。\n\n经营诊断：\n本期按拟定成本费用核算为盈利（拟）；利润与现金差异已由收付款、资本及往来库存调节。 [依据1]\n\n【依据1 · 财务报表与对账】\n当前账套：原始销售 + 补齐记录（拟），2026-09-05至2026-09-15，币种人民币，数量单位千克；官方原始日期2022年9月，演示日期2026年9月（拟）。\n销售净额46,356.3736元；减销售成本26,865.7266元（拟），毛利19,490.647元（拟）；再减经营费用9,800.5182元（拟，含损耗费用8,600.5182元），净利润9,690.1288元（拟）。\n期末现金72,742.7038元（拟）、应收0.00元（拟）、库存283.0977元（拟）、应付10,193.2071元（拟）。现金包含拟定初始投入，采购付款与利润中的销售成本口径不同，因此现金余额不等于净利润。\n6/6项对账通过。可在财务报表和会计凭证逐笔回查。\n利润到现金调节（拟）：期初现金55,547.7778元 + 本期净利润9,690.1288元 + 本期资本投入0.00元 + 应付增加6,990.3645元 − 应收增加0.00元 − 库存增加-514.4327元 = 期末现金72,742.7038元。资本投入是现金来源；判断资金是否可用应核实实际收付款和到期债务。\n\n经营建议：\n行动：核对期末应付账款对应的收付款安排，明确利润与现金差异的到期支付影响。 [依据1]\n行动：结合库存增减变动，核实现物盘点与账面库存的一致性，保障利润核算基础准确。 [依据1]\n行动：确认期初现金及初始投入的实际到账情况，厘清期初现金与本期净利润的构成关系。 [依据1]\n行动：明确损耗费用的具体构成及对应付款情况，梳理费用对利润与现金差异的影响。 [依据1]",
+      "finishedAt": "2026-09-30T16:09:40.213Z"
+    },
+    {
+      "id": "16e60107910be8b7ca82034705946e23",
+      "question": "销量最高的五种菜是什么？",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T15:57:22.285Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "quantity",
+        "ascending": false,
+        "limit": 5,
+        "price": false,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 7,
+        "uplift": 0,
+        "budget_scaled": null,
+        "assumptions": [
+          "未指定天数，按7天情景（拟）",
+          "未指定需求变化，按0%情景（拟）",
+          "未设采购预算上限",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": null,
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 3720,
+          "output": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。",
+          "details": {
+            "intents": [
+              "ranking"
+            ],
+            "productIds": [],
+            "clarification": "",
+            "reason": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 351,
+          "output": "依据1 · 销售与经营分析 · 经营商品排名"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 1804,
+          "output": "行动：参考正向销量排名结果，重点关注排名靠前的叶菜品类"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "经营商品排名",
+          "node": "销售与经营分析",
+          "configRevision": 1,
+          "text": "按正向销量从高到低，列出5种商品：\n1．云南生菜(份)（102900011030059）：售出1669千克，销售净额9,411.40元，毛利3,410.20元（拟），毛利率36.23%（拟）。\n2．云南油麦菜(份)（102900011030097）：售出1153千克，销售净额4,790.00元，毛利2,025.20元（拟），毛利率42.28%（拟）。\n3．小青菜(份)（102900011034224）：售出911千克，销售净额3,044.10元，毛利1,950.90元（拟），毛利率64.09%（拟）。\n4．奶白菜(份)（102900011034231）：售出876千克，销售净额3,924.80元，毛利2,698.40元（拟），毛利率68.75%（拟）。\n5．枝江青梗散花（102900011034026）：售出748.04千克，销售净额8,193.4095元，毛利2,595.9345元（拟），毛利率31.68%（拟）。",
+          "data": {
+            "metric": "quantity",
+            "ascending": false,
+            "limit": 5,
+            "matchedCount": 79,
+            "rows": [
+              {
+                "id": "102900011030059",
+                "name": "云南生菜(份)",
+                "unit": "千克",
+                "sold": 1669,
+                "revenue_scaled": 94114000,
+                "gross_profit_scaled": 34102000,
+                "margin": 0.36234779097690034
+              },
+              {
+                "id": "102900011030097",
+                "name": "云南油麦菜(份)",
+                "unit": "千克",
+                "sold": 1153,
+                "revenue_scaled": 47900000,
+                "gross_profit_scaled": 20252000,
+                "margin": 0.4227974947807933
+              },
+              {
+                "id": "102900011034224",
+                "name": "小青菜(份)",
+                "unit": "千克",
+                "sold": 911,
+                "revenue_scaled": 30441000,
+                "gross_profit_scaled": 19509000,
+                "margin": 0.64087907755987
+              },
+              {
+                "id": "102900011034231",
+                "name": "奶白菜(份)",
+                "unit": "千克",
+                "sold": 876,
+                "revenue_scaled": 39248000,
+                "gross_profit_scaled": 26984000,
+                "margin": 0.6875254790052996
+              },
+              {
+                "id": "102900011034026",
+                "name": "枝江青梗散花",
+                "unit": "千克",
+                "sold": 748.04,
+                "revenue_scaled": 81934095,
+                "gross_profit_scaled": 25959345,
+                "margin": 0.31683202212705225
+              }
+            ]
+          }
+        }
+      ],
+      "forecasts": [],
+      "approval": "unneeded",
+      "usage": [
+        {
+          "input_tokens": 551,
+          "output_tokens": 52,
+          "total_tokens": 603,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 1471,
+          "output_tokens": 32,
+          "total_tokens": 1503,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "ranking"
+        ],
+        "productIds": [],
+        "clarification": "",
+        "reason": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "参考正向销量排名结果，重点关注排名靠前的叶菜品类",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-01至2026-09-30（拟），人民币；公开来源与拟定业务分别标注。\n\n【依据1 · 经营商品排名】\n按正向销量从高到低，列出5种商品：\n1．云南生菜(份)（102900011030059）：售出1669千克，销售净额9,411.40元，毛利3,410.20元（拟），毛利率36.23%（拟）。\n2．云南油麦菜(份)（102900011030097）：售出1153千克，销售净额4,790.00元，毛利2,025.20元（拟），毛利率42.28%（拟）。\n3．小青菜(份)（102900011034224）：售出911千克，销售净额3,044.10元，毛利1,950.90元（拟），毛利率64.09%（拟）。\n4．奶白菜(份)（102900011034231）：售出876千克，销售净额3,924.80元，毛利2,698.40元（拟），毛利率68.75%（拟）。\n5．枝江青梗散花（102900011034026）：售出748.04千克，销售净额8,193.4095元，毛利2,595.9345元（拟），毛利率31.68%（拟）。\n\n经营建议：\n行动：参考正向销量排名结果，重点关注排名靠前的叶菜品类 [依据1]",
+      "finishedAt": "2026-09-30T15:57:30.643Z"
+    },
+    {
+      "id": "be85cde19ed608f19f33a2502379ea49",
+      "question": "小米椒多少钱一千克？",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T15:57:31.475Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "revenue",
+        "ascending": false,
+        "limit": 10,
+        "price": true,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 7,
+        "uplift": 0,
+        "budget_scaled": null,
+        "assumptions": [
+          "未指定天数，按7天情景（拟）",
+          "未指定需求变化，按0%情景（拟）",
+          "未设采购预算上限",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": {
+        "question": "销量最高的五种菜是什么？",
+        "plan": {
+          "intents": [
+            "ranking"
+          ],
+          "productIds": [],
+          "clarification": "",
+          "reason": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。"
+        },
+        "parameters": {
+          "days": 7,
+          "uplift": 0,
+          "budget_scaled": null,
+          "assumptions": [
+            "未指定天数，按7天情景（拟）",
+            "未指定需求变化，按0%情景（拟）",
+            "未设采购预算上限",
+            "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+          ]
+        }
+      },
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 2286,
+          "output": "用户指定商品小米椒及其计量单位为千克，候选中存在对应单品编码。",
+          "details": {
+            "intents": [
+              "product"
+            ],
+            "productIds": [
+              "102900011031100"
+            ],
+            "clarification": "",
+            "reason": "用户指定商品小米椒及其计量单位为千克，候选中存在对应单品编码。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 102,
+          "output": "依据1 · 库存诊断 · 商品销量、价格与库存"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 3939,
+          "output": "行动：若需定价或补货决策，应结合当期成交区间、近期损耗与期末库存另行测算。"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "商品销量、价格与库存",
+          "node": "库存诊断",
+          "configRevision": 0,
+          "text": "小米椒(份)（102900011031100）：本期售出616千克、退货1千克；销售净额2,070.10元。最近一次销售单价2.10元/千克，时间2026-09-30 21:11:48.539（拟）；期间售价2.10元至3.50元/千克，加权成交均价3.3662元/千克。\n本期买入802.336千克、损耗181.936千克、期末库存5.4千克（拟）；演示采购成本1.40元/千克、毛利1,209.10元（拟）。原始销售可按附件2行号回查。",
+          "data": {
+            "products": [
+              {
+                "id": "102900011031100",
+                "name": "小米椒(份)",
+                "unit": "千克",
+                "stock": 5.4,
+                "bought": 802.336,
+                "sold": 616,
+                "returned": 1,
+                "lost": 181.936,
+                "cost_scaled": 14000,
+                "revenue_scaled": 20701000,
+                "gross_profit_scaled": 12091000,
+                "sourceRows": [
+                  650612,
+                  650748,
+                  650772,
+                  650893,
+                  651053,
+                  651169,
+                  651220,
+                  651321
+                ]
+              }
+            ],
+            "count": 79
+          }
+        }
+      ],
+      "forecasts": [],
+      "approval": "unneeded",
+      "usage": [
+        {
+          "input_tokens": 740,
+          "output_tokens": 55,
+          "total_tokens": 795,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 938,
+          "output_tokens": 73,
+          "total_tokens": 1011,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "product"
+        ],
+        "productIds": [
+          "102900011031100"
+        ],
+        "clarification": "",
+        "reason": "用户指定商品小米椒及其计量单位为千克，候选中存在对应单品编码。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [],
+      "modelWarnings": [
+        "部分模型表述未通过输出结构、数字或引用检查，已移除。"
+      ],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "若需定价或补货决策，应结合当期成交区间、近期损耗与期末库存另行测算。",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-01至2026-09-30（拟），人民币；公开来源与拟定业务分别标注。\n\n【依据1 · 商品销量、价格与库存】\n小米椒(份)（102900011031100）：本期售出616千克、退货1千克；销售净额2,070.10元。最近一次销售单价2.10元/千克，时间2026-09-30 21:11:48.539（拟）；期间售价2.10元至3.50元/千克，加权成交均价3.3662元/千克。\n本期买入802.336千克、损耗181.936千克、期末库存5.4千克（拟）；演示采购成本1.40元/千克、毛利1,209.10元（拟）。原始销售可按附件2行号回查。\n\n经营建议：\n行动：若需定价或补货决策，应结合当期成交区间、近期损耗与期末库存另行测算。 [依据1]",
+      "finishedAt": "2026-09-30T15:57:40.135Z"
+    }
+  ],
+  "excelBytes": 5469128,
+  "excelSHA256": "ebd4c0dfee8f80afb89791d72351369cc3c7aa193af9446d1396a80cec29be0a",
+  "engineVersion": "国内生鲜-20260930-2",
+  "originalCalendarForecastVerified": true,
+  "greetingAndCatalogClarificationRegressionVerified": true,
+  "testCount": 39,
+  "deployId": "6abd33a2300260c93b0f53b4",
+  "budgetMeasuredAt": "2026-09-30T16:12:12.718Z"
+}

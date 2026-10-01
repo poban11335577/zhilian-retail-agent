@@ -1,0 +1,428 @@
+{
+  "url": "https://zhilian-business-poban.netlify.app",
+  "at": "2026-09-30T15:57:40.394Z",
+  "caseId": "国内商超-202609-人民币-v3",
+  "runs": [
+    {
+      "id": "16e60107910be8b7ca82034705946e23",
+      "question": "销量最高的五种菜是什么？",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T15:57:22.285Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "quantity",
+        "ascending": false,
+        "limit": 5,
+        "price": false,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 7,
+        "uplift": 0,
+        "budget_scaled": null,
+        "assumptions": [
+          "未指定天数，按7天情景（拟）",
+          "未指定需求变化，按0%情景（拟）",
+          "未设采购预算上限",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": null,
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 3720,
+          "output": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。",
+          "details": {
+            "intents": [
+              "ranking"
+            ],
+            "productIds": [],
+            "clarification": "",
+            "reason": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 351,
+          "output": "依据1 · 销售与经营分析 · 经营商品排名"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 1804,
+          "output": "行动：参考正向销量排名结果，重点关注排名靠前的叶菜品类"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "经营商品排名",
+          "node": "销售与经营分析",
+          "configRevision": 1,
+          "text": "按正向销量从高到低，列出5种商品：\n1．云南生菜(份)（102900011030059）：售出1669千克，销售净额9,411.40元，毛利3,410.20元（拟），毛利率36.23%（拟）。\n2．云南油麦菜(份)（102900011030097）：售出1153千克，销售净额4,790.00元，毛利2,025.20元（拟），毛利率42.28%（拟）。\n3．小青菜(份)（102900011034224）：售出911千克，销售净额3,044.10元，毛利1,950.90元（拟），毛利率64.09%（拟）。\n4．奶白菜(份)（102900011034231）：售出876千克，销售净额3,924.80元，毛利2,698.40元（拟），毛利率68.75%（拟）。\n5．枝江青梗散花（102900011034026）：售出748.04千克，销售净额8,193.4095元，毛利2,595.9345元（拟），毛利率31.68%（拟）。",
+          "data": {
+            "metric": "quantity",
+            "ascending": false,
+            "limit": 5,
+            "matchedCount": 79,
+            "rows": [
+              {
+                "id": "102900011030059",
+                "name": "云南生菜(份)",
+                "unit": "千克",
+                "sold": 1669,
+                "revenue_scaled": 94114000,
+                "gross_profit_scaled": 34102000,
+                "margin": 0.36234779097690034
+              },
+              {
+                "id": "102900011030097",
+                "name": "云南油麦菜(份)",
+                "unit": "千克",
+                "sold": 1153,
+                "revenue_scaled": 47900000,
+                "gross_profit_scaled": 20252000,
+                "margin": 0.4227974947807933
+              },
+              {
+                "id": "102900011034224",
+                "name": "小青菜(份)",
+                "unit": "千克",
+                "sold": 911,
+                "revenue_scaled": 30441000,
+                "gross_profit_scaled": 19509000,
+                "margin": 0.64087907755987
+              },
+              {
+                "id": "102900011034231",
+                "name": "奶白菜(份)",
+                "unit": "千克",
+                "sold": 876,
+                "revenue_scaled": 39248000,
+                "gross_profit_scaled": 26984000,
+                "margin": 0.6875254790052996
+              },
+              {
+                "id": "102900011034026",
+                "name": "枝江青梗散花",
+                "unit": "千克",
+                "sold": 748.04,
+                "revenue_scaled": 81934095,
+                "gross_profit_scaled": 25959345,
+                "margin": 0.31683202212705225
+              }
+            ]
+          }
+        }
+      ],
+      "forecasts": [],
+      "approval": "unneeded",
+      "usage": [
+        {
+          "input_tokens": 551,
+          "output_tokens": 52,
+          "total_tokens": 603,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 1471,
+          "output_tokens": 32,
+          "total_tokens": 1503,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "ranking"
+        ],
+        "productIds": [],
+        "clarification": "",
+        "reason": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "参考正向销量排名结果，重点关注排名靠前的叶菜品类",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-01至2026-09-30（拟），人民币；公开来源与拟定业务分别标注。\n\n【依据1 · 经营商品排名】\n按正向销量从高到低，列出5种商品：\n1．云南生菜(份)（102900011030059）：售出1669千克，销售净额9,411.40元，毛利3,410.20元（拟），毛利率36.23%（拟）。\n2．云南油麦菜(份)（102900011030097）：售出1153千克，销售净额4,790.00元，毛利2,025.20元（拟），毛利率42.28%（拟）。\n3．小青菜(份)（102900011034224）：售出911千克，销售净额3,044.10元，毛利1,950.90元（拟），毛利率64.09%（拟）。\n4．奶白菜(份)（102900011034231）：售出876千克，销售净额3,924.80元，毛利2,698.40元（拟），毛利率68.75%（拟）。\n5．枝江青梗散花（102900011034026）：售出748.04千克，销售净额8,193.4095元，毛利2,595.9345元（拟），毛利率31.68%（拟）。\n\n经营建议：\n行动：参考正向销量排名结果，重点关注排名靠前的叶菜品类 [依据1]",
+      "finishedAt": "2026-09-30T15:57:30.643Z"
+    },
+    {
+      "id": "be85cde19ed608f19f33a2502379ea49",
+      "question": "小米椒多少钱一千克？",
+      "status": "completed",
+      "phase": "review",
+      "createdAt": "2026-09-30T15:57:31.475Z",
+      "requestedScope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30"
+      },
+      "options": {
+        "metric": "revenue",
+        "ascending": false,
+        "limit": 10,
+        "price": true,
+        "comparison": false,
+        "lossOnly": false
+      },
+      "scope": {
+        "from": "2026-09-01",
+        "to": "2026-09-30",
+        "caseId": "国内商超-202609-人民币-v3",
+        "currency": "CNY",
+        "originalPeriod": "2022-09",
+        "dateAdaptation": "同月同日平移（拟）"
+      },
+      "configVersion": 3,
+      "draftHash": null,
+      "preview": false,
+      "provider": "Ark",
+      "model": "doubao-seed-2-1-lite-260915",
+      "modelRevision": 15,
+      "modelEnabled": true,
+      "revision": 4,
+      "parameters": {
+        "days": 7,
+        "uplift": 0,
+        "budget_scaled": null,
+        "assumptions": [
+          "未指定天数，按7天情景（拟）",
+          "未指定需求变化，按0%情景（拟）",
+          "未设采购预算上限",
+          "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+        ]
+      },
+      "previous": {
+        "question": "销量最高的五种菜是什么？",
+        "plan": {
+          "intents": [
+            "ranking"
+          ],
+          "productIds": [],
+          "clarification": "",
+          "reason": "排名指标与数量已明确，读取当前账套全部商品，不要求用户提供已有商品清单。"
+        },
+        "parameters": {
+          "days": 7,
+          "uplift": 0,
+          "budget_scaled": null,
+          "assumptions": [
+            "未指定天数，按7天情景（拟）",
+            "未指定需求变化，按0%情景（拟）",
+            "未设采购预算上限",
+            "安全库存、包装及缓冲为明确标注的测算规则（拟）。"
+          ]
+        }
+      },
+      "trace": [
+        {
+          "name": "需求理解与工具调度",
+          "mode": "豆包模型",
+          "durationMs": 2286,
+          "output": "用户指定商品小米椒及其计量单位为千克，候选中存在对应单品编码。",
+          "details": {
+            "intents": [
+              "product"
+            ],
+            "productIds": [
+              "102900011031100"
+            ],
+            "clarification": "",
+            "reason": "用户指定商品小米椒及其计量单位为千克，候选中存在对应单品编码。"
+          }
+        },
+        {
+          "name": "账套工具执行与对账",
+          "mode": "同一账套确定性计算",
+          "durationMs": 102,
+          "output": "依据1 · 库存诊断 · 商品销量、价格与库存"
+        },
+        {
+          "name": "经营诊断与输出审核",
+          "mode": "豆包模型",
+          "durationMs": 3939,
+          "output": "行动：若需定价或补货决策，应结合当期成交区间、近期损耗与期末库存另行测算。"
+        }
+      ],
+      "evidence": [
+        {
+          "ref": "依据1",
+          "tool": "商品销量、价格与库存",
+          "node": "库存诊断",
+          "configRevision": 0,
+          "text": "小米椒(份)（102900011031100）：本期售出616千克、退货1千克；销售净额2,070.10元。最近一次销售单价2.10元/千克，时间2026-09-30 21:11:48.539（拟）；期间售价2.10元至3.50元/千克，加权成交均价3.3662元/千克。\n本期买入802.336千克、损耗181.936千克、期末库存5.4千克（拟）；演示采购成本1.40元/千克、毛利1,209.10元（拟）。原始销售可按附件2行号回查。",
+          "data": {
+            "products": [
+              {
+                "id": "102900011031100",
+                "name": "小米椒(份)",
+                "unit": "千克",
+                "stock": 5.4,
+                "bought": 802.336,
+                "sold": 616,
+                "returned": 1,
+                "lost": 181.936,
+                "cost_scaled": 14000,
+                "revenue_scaled": 20701000,
+                "gross_profit_scaled": 12091000,
+                "sourceRows": [
+                  650612,
+                  650748,
+                  650772,
+                  650893,
+                  651053,
+                  651169,
+                  651220,
+                  651321
+                ]
+              }
+            ],
+            "count": 79
+          }
+        }
+      ],
+      "forecasts": [],
+      "approval": "unneeded",
+      "usage": [
+        {
+          "input_tokens": 740,
+          "output_tokens": 55,
+          "total_tokens": 795,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        {
+          "input_tokens": 938,
+          "output_tokens": 73,
+          "total_tokens": 1011,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      ],
+      "plan": {
+        "intents": [
+          "product"
+        ],
+        "productIds": [
+          "102900011031100"
+        ],
+        "clarification": "",
+        "reason": "用户指定商品小米椒及其计量单位为千克，候选中存在对应单品编码。"
+      },
+      "checks": [
+        {
+          "name": "每张凭证借贷平衡（拟）",
+          "difference": 0
+        },
+        {
+          "name": "资产 = 负债 + 权益（拟）",
+          "difference": 0
+        },
+        {
+          "name": "库存明细 = 库存总账（拟）",
+          "difference": 0
+        },
+        {
+          "name": "期初现金 + 收支 = 期末现金（拟）",
+          "difference": 0
+        },
+        {
+          "name": "商品销售净额 = 原始销量售价演算",
+          "difference": 0
+        },
+        {
+          "name": "原单汇总 = 销售明细",
+          "difference": 0
+        }
+      ],
+      "diagnosis": [],
+      "modelWarnings": [
+        "部分模型表述未通过输出结构、数字或引用检查，已移除。"
+      ],
+      "notes": [
+        {
+          "kind": "行动",
+          "text": "若需定价或补货决策，应结合当期成交区间、近期损耗与期末库存另行测算。",
+          "refs": [
+            "依据1"
+          ]
+        }
+      ],
+      "answer": "分析范围：2026-09-01至2026-09-30（拟），人民币；公开来源与拟定业务分别标注。\n\n【依据1 · 商品销量、价格与库存】\n小米椒(份)（102900011031100）：本期售出616千克、退货1千克；销售净额2,070.10元。最近一次销售单价2.10元/千克，时间2026-09-30 21:11:48.539（拟）；期间售价2.10元至3.50元/千克，加权成交均价3.3662元/千克。\n本期买入802.336千克、损耗181.936千克、期末库存5.4千克（拟）；演示采购成本1.40元/千克、毛利1,209.10元（拟）。原始销售可按附件2行号回查。\n\n经营建议：\n行动：若需定价或补货决策，应结合当期成交区间、近期损耗与期末库存另行测算。 [依据1]",
+      "finishedAt": "2026-09-30T15:57:40.135Z"
+    }
+  ]
+}

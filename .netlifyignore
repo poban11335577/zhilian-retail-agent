@@ -1,0 +1,5 @@
+.env
+.local-data/
+管理员登录信息.txt
+node_modules/
+*.private.json

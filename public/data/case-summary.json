@@ -1,0 +1,1 @@
+{"caseId":"国内商超-202609-人民币-v3","from":"2026-09-01","to":"2026-09-30","products":79,"sales":24040,"checks":[{"name":"每张凭证借贷平衡（拟）","difference":0},{"name":"资产 = 负债 + 权益（拟）","difference":0},{"name":"库存明细 = 库存总账（拟）","difference":0},{"name":"期初现金 + 收支 = 期末现金（拟）","difference":0},{"name":"商品销售净额 = 原始销量售价演算","difference":0},{"name":"原单汇总 = 销售明细","difference":0}]}

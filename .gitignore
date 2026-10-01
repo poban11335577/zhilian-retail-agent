@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.netlify/
+.local-data/
+.env
+.env.*
+!.env.example
+*.private.*
+*.private
+*-credentials.json
+*-access.json
+*.log
+管理员登录信息.txt
+
+.server-functions/

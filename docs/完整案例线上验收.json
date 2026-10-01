@@ -1,0 +1,53 @@
+{
+  "url": "https://zhilian-business-poban.netlify.app",
+  "at": "2026-09-30T16:12:12.718Z",
+  "model": "doubao-seed-2-1-lite-260915",
+  "publicModelReady": true,
+  "caseId": "国内商超-202609-人民币-v3",
+  "modelActualCallsVerified": true,
+  "anonymousModelActualCallsVerified": true,
+  "tokenBudget": 450000,
+  "usedTokens": 41577,
+  "reservedTokens": 0,
+  "forecastMatchesDatabase": true,
+  "followupChangesParameters": true,
+  "budgetConstraintVerified": true,
+  "adminRecordsMatchPublicReports": true,
+  "profitCashBridgeVerified": true,
+  "originalDatesPreserved": true,
+  "checks": [
+    {
+      "name": "每张凭证借贷平衡（拟）",
+      "difference": 0
+    },
+    {
+      "name": "资产 = 负债 + 权益（拟）",
+      "difference": 0
+    },
+    {
+      "name": "库存明细 = 库存总账（拟）",
+      "difference": 0
+    },
+    {
+      "name": "期初现金 + 收支 = 期末现金（拟）",
+      "difference": 0
+    },
+    {
+      "name": "商品销售净额 = 原始销量售价演算",
+      "difference": 0
+    },
+    {
+      "name": "原单汇总 = 销售明细",
+      "difference": 0
+    }
+  ],
+  "excelMatches": true,
+  "excelBytes": 5469128,
+  "excelSHA256": "ebd4c0dfee8f80afb89791d72351369cc3c7aa193af9446d1396a80cec29be0a",
+  "engineVersion": "国内生鲜-20260930-2",
+  "originalCalendarForecastVerified": true,
+  "greetingAndCatalogClarificationRegressionVerified": true,
+  "testCount": 39,
+  "deployId": "6abd33a2300260c93b0f53b4",
+  "budgetMeasuredAt": "2026-09-30T16:12:12.718Z"
+}

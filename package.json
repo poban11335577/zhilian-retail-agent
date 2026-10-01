@@ -1,0 +1,29 @@
+{
+  "name": "zhilian-independent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-case-summary.mjs && vite build && node scripts/build-functions.mjs",
+    "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
+    "test": "node --test server/*.test.ts",
+    "deploy": "netlify deploy --prod --dir dist --functions .server-functions --no-build"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0",
+    "@types/sql.js": "^1.4.11",
+    "lucide-react": "^1.31.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sql.js": "^1.14.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "netlify-cli": "^23.0.0",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "url": "https://6abe025069e863509dba8be1--zhilian-business-poban.netlify.app",
+  "checkedAt": "2026-10-01T06:54:48.634Z",
+  "runId": "2dfdc0c45e4a5271f70807f1714bfd6d",
+  "runCreatedAt": "2026-10-01T06:51:24.124Z",
+  "status": "completed",
+  "modelEnabled": true,
+  "forecast": {
+    "name": "小米椒(份)",
+    "stock": 5.4,
+    "suggested": 25,
+    "budget_scaled": 350000,
+    "horizonFrom": "2026-10-01"
+  },
+  "checks": [
+    {
+      "name": "每张凭证借贷平衡（拟）",
+      "difference": 0
+    },
+    {
+      "name": "资产 = 负债 + 权益（拟）",
+      "difference": 0
+    },
+    {
+      "name": "库存明细 = 库存总账（拟）",
+      "difference": 0
+    },
+    {
+      "name": "期初现金 + 收支 = 期末现金（拟）",
+      "difference": 0
+    },
+    {
+      "name": "商品销售净额 = 原始销量售价演算",
+      "difference": 0
+    },
+    {
+      "name": "原单汇总 = 销售明细",
+      "difference": 0
+    }
+  ],
+  "summary": {
+    "caseId": "国内商超-202609-人民币-v3",
+    "from": "2026-09-01",
+    "to": "2026-09-30",
+    "products": 79,
+    "sales": 24040,
+    "checks": [
+      {
+        "name": "每张凭证借贷平衡（拟）",
+        "difference": 0
+      },
+      {
+        "name": "资产 = 负债 + 权益（拟）",
+        "difference": 0
+      },
+      {
+        "name": "库存明细 = 库存总账（拟）",
+        "difference": 0
+      },
+      {
+        "name": "期初现金 + 收支 = 期末现金（拟）",
+        "difference": 0
+      },
+      {
+        "name": "商品销售净额 = 原始销量售价演算",
+        "difference": 0
+      },
+      {
+        "name": "原单汇总 = 销售明细",
+        "difference": 0
+      }
+    ]
+  },
+  "tokenBudget": 450000,
+  "usedTokens": 50024,
+  "reservedTokens": 0
+}

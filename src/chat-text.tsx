@@ -1,0 +1,4 @@
+import type {ReactNode} from 'react';
+function inline(text:string):ReactNode[]{return text.split(/(\*\*[^*\n]+\*\*|`[^`\n]+`)/g).map((part,i)=>part.startsWith('**')&&part.endsWith('**')?<strong key={i}>{part.slice(2,-2)}</strong>:part.startsWith('`')&&part.endsWith('`')?<code key={i}>{part.slice(1,-1)}</code>:part)}
+// Render a small Markdown subset as React text; never interpret raw HTML from model output.
+export function ChatText({text}:{text:string}){return <div className="answer-text">{text.split(/\n\s*\n/).map((block,i)=>{const lines=block.split('\n');if(lines.every(l=>/^\s*(?:[-*]|\d+[.)、])\s+/.test(l)))return <ul key={i}>{lines.map((l,j)=><li key={j}>{inline(l.replace(/^\s*(?:[-*]|\d+[.)、])\s+/,''))}</li>)}</ul>;if(/^#{1,4}\s/.test(block))return <h4 key={i}>{inline(block.replace(/^#{1,4}\s/,''))}</h4>;return <p key={i}>{inline(block)}</p>})}</div>}
