@@ -1,6 +1,8 @@
 # 智链销国内商超经营智能体
 
-演示网站：https://zhilian-business-poban.netlify.app/
+新版源码：https://github.com/poban11335577/zhilian-retail-agent
+
+本轮仅发布 GitHub，未更新 Netlify。原网站 https://zhilian-business-poban.netlify.app/ 是旧版入口；查看本轮手机和电脑对话界面请按下方步骤本地运行。
 
 中文经营对话工作台，兼顾手机与电脑。可查询同一账套的销售、采购、库存与财务，按预算测算备货，保存可回查的执行轨迹与方案审核记录。
 本项目仍在完善业务执行闭环，不承诺获奖或真实门店收益。拟定业务以“（拟）”标记。
