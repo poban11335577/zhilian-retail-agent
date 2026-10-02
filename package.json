@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {"node": "24.x"},
   "scripts": {
+    "build:web": "node scripts/build-case-summary.mjs && node scripts/build-profit-baseline.mjs && vite build",
     "build": "node scripts/build-case-summary.mjs && node scripts/build-profit-baseline.mjs && vite build && node scripts/build-functions.mjs",
     "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
     "test": "node --test server/*.test.ts",
@@ -12,6 +14,7 @@
   "dependencies": {
     "@netlify/blobs": "^10.0.0",
     "@types/sql.js": "^1.4.11",
+    "@vercel/blob": "^2.8.0",
     "lucide-react": "^1.31.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",

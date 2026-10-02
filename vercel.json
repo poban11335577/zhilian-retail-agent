@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build:web",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci --no-audit --no-fund",
+  "regions": ["hkg1"],
+  "functions": {"api/[...path].ts": {"maxDuration": 60}},
+  "routes": [
+    {"src": "/(.*)", "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "no-referrer",
+      "X-Frame-Options": "DENY",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+    }, "continue": true},
+    {"handle": "filesystem"},
+    {"src": "/api(?:/.*)?", "status": 404},
+    {"src": "/.*", "dest": "/index.html"}
+  ]
+}

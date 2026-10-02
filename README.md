@@ -2,7 +2,7 @@
 
 新版源码：https://github.com/poban11335577/zhilian-retail-agent
 
-本轮仅发布 GitHub，未更新 Netlify。原网站 https://zhilian-business-poban.netlify.app/ 是旧版入口；查看本轮手机和电脑对话界面请按下方步骤本地运行。
+新增 Vercel Hobby 免费托管支持，迁移步骤见 [免费托管迁移说明](docs/免费托管迁移说明.md)。原网站 https://zhilian-business-poban.netlify.app/ 是旧版入口；本地查看最新手机和电脑界面请按下方步骤运行。
 
 中文经营对话工作台，兼顾手机与电脑。可查询同一账套的销售、采购、库存与财务，按预算测算备货，保存可回查的执行轨迹与方案审核记录。
 本项目仍在完善业务执行闭环，不承诺获奖或真实门店收益。拟定业务以“（拟）”标记。
@@ -30,9 +30,9 @@ npm run build
 
 默认首页经营智能体；/growth经营增长与利润目标，/scenario备货，/real-data八类明细和报表，/admin管理。自有企业咨询/enterprise-chat，独立企业账本与历史导入不是公共案例的续写。
 
-Netlify服务器需要ADMIN_PASSWORD_HASH、SESSION_SECRET；本地setup生成私有配置。后台支持Ark Responses，密钥加密保存。不要上传.env、.local-data、.netlify或管理员私有密码文件。
+服务器需要ADMIN_PASSWORD_HASH、SESSION_SECRET；本地setup生成私有配置。Vercel 使用 Private Blob 持久化状态，原 Netlify 入口仍可用于其他环境。后台支持Ark Responses，密钥加密保存。不要上传.env、.local-data、.netlify、.vercel或管理员私有密码文件。
 
-49项测试；主要数据和计算入口为public/data/domestic-*.json、lib/case-book.ts、server/case-workflow.ts、server/case-language.ts、server/case-evidence.ts、lib/stock-forecast.ts、lib/profit-forecast.ts、lib/goal-planner.ts。通用企业ledger是独立系统。当前公共案例按整数克和万分之一元计算，参考成本、采购与损耗明确标（拟）。
+51项测试；主要数据和计算入口为public/data/domestic-*.json、lib/case-book.ts、server/case-workflow.ts、server/case-language.ts、server/case-evidence.ts、lib/stock-forecast.ts、lib/profit-forecast.ts、lib/goal-planner.ts。通用企业ledger是独立系统。当前公共案例按整数克和万分之一元计算，参考成本、采购与损耗明确标（拟）。
 
 官方数据、日期平移、真实/拟定边界及完整剩余问题见docs。Excel16张表与网站数据同源。源码保留旧英国案例供历史测试，不作为默认国内案例。
 

@@ -34,12 +34,13 @@
 | Excel模板与导出 | public/data/decision-report-template.xlsx、lib/report-xlsx.ts |
 | 逐笔库存和财务 | lib/case-book.ts |
 | 两份国内账套与 Excel | public/data |
+| Vercel 路由与私有持久化 | vercel.json、api/[...path].ts、server/vercel-repository.ts |
 
 ## 发布
 
-源码协作与线上部署分开。当前站点通过 Netlify 部署；Pull Request 不自动使用生产密钥或发布。
+源码协作与线上部署分开。项目支持 Vercel 免费托管，旧站入口保留；Pull Request 不自动使用生产密钥或发布。详见 docs/免费托管迁移说明.md。
 测试与构建成功后，由项目维护者部署。生产密钥在后端加密保存；45万 token 累计额度由服务端控制。
-禁止提交 `.env`、管理员密码、会话访问凭证、Netlify 令牌、模型密钥或 `.local-data`。
+禁止提交 `.env`、管理员密码、会话访问凭证、Netlify/Vercel 令牌、模型密钥、Blob 凭据、`.vercel` 或 `.local-data`。生产私有存储不要连接到不受信任的 Preview 部署。
 
 ## 下一步重点
 
