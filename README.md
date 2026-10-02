@@ -2,7 +2,7 @@
 
 新版源码：https://github.com/poban11335577/zhilian-retail-agent
 
-新增 Vercel Hobby 免费托管支持，迁移步骤见 [免费托管迁移说明](docs/免费托管迁移说明.md)。原网站 https://zhilian-business-poban.netlify.app/ 是旧版入口；本地查看最新手机和电脑界面请按下方步骤运行。
+新演示入口：[https://zhilian-retail-agent.vercel.app/](https://zhilian-retail-agent.vercel.app/)。Vercel Hobby 免费托管，配置见 [免费托管迁移说明](docs/免费托管迁移说明.md)。新站模型配置由后台独立管理；未配置时使用账套规则与目标规划工具。原 Netlify 地址为旧版入口。
 
 中文经营对话工作台，兼顾手机与电脑。可查询同一账套的销售、采购、库存与财务，按预算测算备货，保存可回查的执行轨迹与方案审核记录。
 本项目仍在完善业务执行闭环，不承诺获奖或真实门店收益。拟定业务以“（拟）”标记。
