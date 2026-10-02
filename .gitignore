@@ -13,3 +13,4 @@ dist/
 管理员登录信息.txt
 
 .server-functions/
+*.inspect.ndjson

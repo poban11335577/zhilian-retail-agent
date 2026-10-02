@@ -1,4 +1,10 @@
+import {forecastProduct} from './stock-forecast.ts';
 // Shared by the demonstration UI, agent tool and reusable profit-forecast skill.
+export interface SupplyProfile {
+ id:string;name:string;category:string;supplierId:string;stock:number;availableStock:number;packSize:number;
+ cost_scaled:number;lossPercent:number;average:number;method:string;mae:any;safety:number;bufferPercent:number;
+ netRevenuePerKg_scaled:number;netGramsPerSoldGram:number;demand:number[];sourceRows:number[];sourceRowCount:number;
+}
 export interface ProfitBaseline {
  version:string; caseId:string; from:string; to:string; originalFrom:string; originalTo:string;
  days:number; rowCount:number; productCount:number; soldGrams:number; returnedGrams:number;
@@ -7,6 +13,7 @@ export interface ProfitBaseline {
  daily:{date:string;originalDate:string;revenue_scaled:number;soldGrams:number;rows:number}[];
  products:{id:string;name:string;category:string;revenue_scaled:number;recent_scaled:number;previous_scaled:number;delta_scaled:number;growth:number|null;sourceRows:number[]}[];
  comparison:{recentFrom:string;recentTo:string;previousFrom:string;previousTo:string;recent_scaled:number;previous_scaled:number;delta_scaled:number;growth:number|null}|null;
+ supply:SupplyProfile[];
 }
 export interface ProfitInputs {
  days:number; quantityChange:number; priceChange:number; costChange:number;
@@ -15,7 +22,7 @@ export interface ProfitInputs {
 export const profitDefaults:ProfitInputs={days:30,quantityChange:0,priceChange:0,costChange:0,lossReduction:0,fixedChange:0,target_scaled:100000000};
 const addDay=(s:string,n:number)=>new Date(Date.parse(s+'T00:00:00Z')+n*86400000).toISOString().slice(0,10);
 const countDays=(a:string,b:string)=>Math.round((Date.parse(b+'T00:00:00Z')-Date.parse(a+'T00:00:00Z'))/86400000)+1;
-export function buildProfitBaseline(c:any):ProfitBaseline {
+export function buildProfitBaseline(c:any,policy={packSize:.5,bufferPercent:0}):ProfitBaseline {
  const days=countDays(c.from,c.to);
  if(!Number.isInteger(days)||days<1||!c.sales.length)throw Error('所选期间没有足够的销售样本。');
  if(c.checks.some((v:any)=>v.difference!==0))throw Error('账套对账异常，暂停利润测算。');
@@ -41,7 +48,11 @@ export function buildProfitBaseline(c:any):ProfitBaseline {
  for(const p of products){p.delta_scaled=p.recent_scaled-p.previous_scaled;p.growth=p.previous_scaled>0?p.delta_scaled/p.previous_scaled*100:null;}
  const recent_scaled=daily.filter(d=>d.date>=recentFrom).reduce((n,d)=>n+d.revenue_scaled,0),previous_scaled=daily.filter(d=>d.date>=previousFrom&&d.date<=previousTo).reduce((n,d)=>n+d.revenue_scaled,0);
  const i=c.income;
- return {version:'profit-scenario-v1',caseId:c.source.case_id,from:c.from,to:c.to,originalFrom:daily[0].originalDate,originalTo:daily.at(-1)!.originalDate,days,rowCount:c.sales.length,productCount:products.length,soldGrams,returnedGrams,revenue_scaled:i.revenue_scaled,cost_scaled:i.cost_scaled,loss_scaled:i.loss_scaled,fixed_scaled:i.expense_scaled-i.loss_scaled,profit_scaled:i.net_profit_scaled,source:{name:c.source.name,url:c.source.url,file:c.source.file,sha256:c.source.sha256},checks:c.checks,daily,products,comparison:days>=14?{recentFrom,recentTo:c.to,previousFrom,previousTo,recent_scaled,previous_scaled,delta_scaled:recent_scaled-previous_scaled,growth:previous_scaled>0?(recent_scaled-previous_scaled)/previous_scaled*100:null}:null};
+ const supply=c.products.filter((p:any)=>p.stocked&&p.sold>0).map((p:any)=>{
+  const f=forecastProduct(c,p,{days:60,uplift:0,assumptions:[]},policy);
+  return {id:p.id,name:p.name,category:p.category,supplierId:p.supplier_id,stock:p.stock,availableStock:f.availableStock,packSize:f.packSize,cost_scaled:p.cost_scaled,lossPercent:f.lossPercent,average:f.average,method:f.method,mae:f.mae,safety:f.safety,bufferPercent:f.bufferPercent,netRevenuePerKg_scaled:p.revenue_scaled/p.sold,netGramsPerSoldGram:(p.sold-p.returned)/p.sold,demand:f.dailyPlan.map((d:any)=>d.unroundedDemand??d.demand),sourceRows:f.sourceRows,sourceRowCount:f.sourceRowCount};
+ });
+ return {version:'profit-scenario-v2',caseId:c.source.case_id,from:c.from,to:c.to,originalFrom:daily[0].originalDate,originalTo:daily.at(-1)!.originalDate,days,rowCount:c.sales.length,productCount:products.length,soldGrams,returnedGrams,revenue_scaled:i.revenue_scaled,cost_scaled:i.cost_scaled,loss_scaled:i.loss_scaled,fixed_scaled:i.expense_scaled-i.loss_scaled,profit_scaled:i.net_profit_scaled,source:{name:c.source.name,url:c.source.url,file:c.source.file,sha256:c.source.sha256},checks:c.checks,daily,products,supply,comparison:days>=14?{recentFrom,recentTo:c.to,previousFrom,previousTo,recent_scaled,previous_scaled,delta_scaled:recent_scaled-previous_scaled,growth:previous_scaled>0?(recent_scaled-previous_scaled)/previous_scaled*100:null}:null};
 }
 export function validateProfitInputs(input:ProfitInputs){
  const ranges:Record<keyof ProfitInputs,[number,number]>={days:[1,60],quantityChange:[-50,100],priceChange:[-20,20],costChange:[-20,50],lossReduction:[0,100],fixedChange:[-50,100],target_scaled:[-1e11,1e11]};

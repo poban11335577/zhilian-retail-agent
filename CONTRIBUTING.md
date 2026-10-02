@@ -28,6 +28,10 @@
 | 中文经营条件解析 | server/case-language.ts |
 | 数值、证据、排名 | server/case-evidence.ts |
 | 预测、原日历与预算 | server/case-forecast.ts |
+| 目标规划与供销利润联动 | lib/goal-planner.ts、lib/stock-forecast.ts |
+| 目标问答与连续条件 | server/profit-skill.ts、server/case-workflow.ts |
+| 目标界面与中文报告 | src/goal-plan-view.tsx、src/growth-workbench.tsx、lib/decision-report.ts |
+| Excel模板与导出 | public/data/decision-report-template.xlsx、lib/report-xlsx.ts |
 | 逐笔库存和财务 | lib/case-book.ts |
 | 两份国内账套与 Excel | public/data |
 
@@ -40,5 +44,6 @@
 ## 下一步重点
 
 完整问题清单见 docs/当前版本全面审查与改进方案.md。
+目标规划最新改动、演示提问与数据口径见 docs/目标经营智能体版本说明.md。同源需求或成本计算变更后，请同时检查目标规划、原备货测算及Excel，避免出现不同数字。
 优先完成采购审批到真实业务账本的执行闭环、更多经营问题评测及异常恢复；保持拟定边界清晰。
 公开代码不代表第三方数据可以自由商用，来源与边界见 DATA_SOURCES.md。
